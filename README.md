@@ -12,6 +12,8 @@ In this task, I have to write a CLI tool that will interact with Acroplia API an
 
 # Build and Install
 
+0. Run Selenium server in separate terminal: ```java -jar selenium-standalone-server.jar```
+
 ## Using go
 
 1. Download and install [golang](https://golang.org/dl/)
