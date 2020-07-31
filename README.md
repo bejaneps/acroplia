@@ -30,13 +30,20 @@ In this task, I have to write a CLI tool that will interact with Acroplia API an
 # Project structure
 
 **cmd** - contains cli tool's root code
+
 **config** - contains configuration files, for now just config.toml
+
 **drivers** - contains Selenium drivers, for now Chrome and Firefox are tested
+
 **gradle** - contains gradle related config vars
+
 **internal** - contains code for connecting to API or Web interface
+
 **internal/crud_test** - contains manual tests for API
+
 **internal/services_test** - contains manual tests for Selenium
-**test** - contains automated tests and test cases
+
+**tests** - contains automated tests and test cases
 
 # Program flags
 
