@@ -23,7 +23,7 @@ In this task, I have to write a CLI tool that will interact with Acroplia API an
 
 1. Build executable: ```./gradlew goBuild```
 2. Run executable: ```./acroplia --help```
-3. Run tests: ```./gradlew goTest *_test.go```
+3. Run tests: ```./gradlew makeTest``` 
 
 **NOTE:** apparently it takes plenty of time to build executable, I recommend to use native Go way to build executable.
 

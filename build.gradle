@@ -9,3 +9,7 @@ golang {
 goBuild {
     go 'build -o ./acroplia -mod=mod github.com/bejaneps/acroplia'
 }
+
+task makeTest(type: com.github.blindpirate.gogradle.Go) {
+    go 'test -v -mod=mod ./...'
+}
