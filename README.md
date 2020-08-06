@@ -9,10 +9,13 @@ In this task, I have to write a CLI tool that will interact with Acroplia API an
 
 **Parts that are done:**
 1. Login page
+2. Creating textpad
+3. Sending a private message
 
 # Build and Install
 
 0. Run Selenium server in separate terminal: ```java -jar selenium-standalone-server.jar```
+1. **When running tests using gradle, you have to kill process of selenium-standalone-server. Using linux: ```ps aux | grep java; kill {process_id}```. Using windows: use task manager.**
 
 ## Using go
 
@@ -23,9 +26,18 @@ In this task, I have to write a CLI tool that will interact with Acroplia API an
 
 ## Using gradle
 
-1. Build executable: ```./gradlew goBuild```
+1. Build executable: ```gradle goBuild```
 2. Run executable: ```./acroplia --help```
-3. Run tests: ```./gradlew makeTest``` 
+3. Run tests: 
+```
+gradle testAll - to run all tests
+gradle testLoginAPI - to run tests for login through API
+gradle testLoginWeb - to run tests for login through Web
+gradle testTextpadAPI - to run tests for creating textpad through API
+gradle testTextpadWeb - to run tests for creating textpad through Web
+gradle testMessageAPI - to run tests for sending message through API
+gradle testMessageWeb - to run tests for sending message through Web (currently server sends 500 Internal Server Error even when message is sent)
+``` 
 
 **NOTE:** apparently it takes plenty of time to build executable, I recommend to use native Go way to build executable.
 
@@ -59,5 +71,6 @@ In this task, I have to write a CLI tool that will interact with Acroplia API an
 8. ```--selenium-port {number}``` - port on which Selenium standalone server is listening
 9.  ```--selenium-browser {browser_name}``` - browser to be used by Selenium
 10. ```--selenium-options {string[]...}``` - additional options for Selenium browser (like --headless and etc)
+11. ```--help, -h``` - to view additional flags for each command
 
 **NOTE:** in case if you don't prefer using flags, you can add all info to _config/config.toml_ file.
