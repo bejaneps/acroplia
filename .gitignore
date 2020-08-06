@@ -3,3 +3,10 @@
 
 .gradle
 .gradle/*
+
+.login-response.json
+textpad-response.json
+.textpad-response.json
+
+acroplia
+acroplia.exe

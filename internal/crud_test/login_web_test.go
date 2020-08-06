@@ -1,7 +1,6 @@
 package crud_test
 
 import (
-	"runtime"
 	"testing"
 
 	"github.com/bejaneps/acroplia/internal/crud"
@@ -9,10 +8,6 @@ import (
 )
 
 func TestWebLoginByValidEmail(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	var (
 		email    = "bejanhtc@gmail.com"
 		password = "Saburi123"
@@ -33,10 +28,6 @@ func TestWebLoginByValidEmail(t *testing.T) {
 }
 
 func TestWebLoginByInvalidEmail(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	var invalidEmail = "test@test.com"
 
 	// setup selenium wd
@@ -54,10 +45,6 @@ func TestWebLoginByInvalidEmail(t *testing.T) {
 }
 
 func TestWebLoginByEmailInvalidPassword(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	var (
 		email           = "bejanhtc@gmail.com"
 		invalidPassword = "Saburi321"
@@ -78,10 +65,6 @@ func TestWebLoginByEmailInvalidPassword(t *testing.T) {
 }
 
 func TestWebLoginByValidPhone(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	var (
 		validPhone    = "+905488892053"
 		validPassword = "Saburi123"
@@ -103,10 +86,6 @@ func TestWebLoginByValidPhone(t *testing.T) {
 }
 
 func TestWebLoginByInvalidPhone(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	var invalidPhone = "+1ds4215rw1"
 
 	// setup selenium wd
@@ -124,10 +103,6 @@ func TestWebLoginByInvalidPhone(t *testing.T) {
 }
 
 func TestWebLoginByPhoneInvalidPassword(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	var (
 		validPhone      = "+905488892053"
 		invalidPassword = "invalidPassword"

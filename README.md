@@ -55,10 +55,9 @@ In this task, I have to write a CLI tool that will interact with Acroplia API an
 4. ```--password {your_password}``` - password in Acroplia used for login, **required** for login by: username, email or phone
 5. ```--username {your_username}``` - username in Acroplia used for login (through API only)
 6. ```--phone {phone_number}``` - phone in Acroplia used for login
-7. ```--x-auth-token, -x``` - X-Auth-Token for creating textpad and sending private messages through API (not used for now)
-8. ```--output, -o {filename|filepath}``` - store response body from API calls in separate file, by default response body is written to stdout
-9. ```--selenium-port {number}``` - port on which Selenium standalone server is listening
-10. ```--selenium-browser {browser_name}``` - browser to be used by Selenium
-11. ```--selenium-options {string[]...}``` - additional options for Selenium browser (like --headless and etc)
+7. ```--output, -o {filename|filepath}``` - store response body from API calls in separate file, by default response body is written to stdout
+8. ```--selenium-port {number}``` - port on which Selenium standalone server is listening
+9.  ```--selenium-browser {browser_name}``` - browser to be used by Selenium
+10. ```--selenium-options {string[]...}``` - additional options for Selenium browser (like --headless and etc)
 
 **NOTE:** in case if you don't prefer using flags, you can add all info to _config/config.toml_ file.

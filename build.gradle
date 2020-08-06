@@ -7,9 +7,59 @@ golang {
 }
 
 goBuild {
+    description 'Build CLI tool to interact with Acroplia API and Web.'
     go 'build -o ./acroplia -mod=mod github.com/bejaneps/acroplia'
 }
 
-task makeTest(type: com.github.blindpirate.gogradle.Go) {
+goTest {
+    description 'Deprecated. Don\'t use.'
+}
+
+task startSelenium(type: Exec) {
+    workingDir './drivers/'
+
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine 'start-server.bat'
+    } else {
+        commandLine './start-server.sh'
+    }
+}
+
+task testAll(type: com.github.blindpirate.gogradle.Go) {
+    description 'Run tests for login(api, web) and textpad(api,web). Close selenium standalone server, after tests are done !'
+    dependsOn startSelenium
     go 'test -v -mod=mod ./...'
+}
+
+task testLoginAPI(type: com.github.blindpirate.gogradle.Go) {
+    description 'Run tests just for login through API.'
+    go 'test -v -mod=mod ./internal/crud_test/login_api_test.go'
+}
+
+task testLoginWeb(type: com.github.blindpirate.gogradle.Go) {
+    description 'Run tests just for login through Web.'
+    dependsOn startSelenium
+    go 'test -v -mod=mod ./internal/crud_test/login_web_test.go'
+}
+
+task testTextpadAPI(type: com.github.blindpirate.gogradle.Go) {
+    description 'Run tests just for creating textpad through API.'
+    go 'test -v -mod=mod ./internal/crud_test/textpad_api_test.go'
+}
+
+task testTextpadWeb(type: com.github.blindpirate.gogradle.Go) {
+    description 'Run tests just for creating textpad through Web.'
+    dependsOn startSelenium
+    go 'test -v -mod=mod ./internal/crud_test/textpad_web_test.go'
+}
+
+task testMessageAPI(type: com.github.blindpirate.gogradle.Go) {
+    description 'Run tests just for sending message through API.'
+    go 'test -v -mod=mod ./internal/crud_test/message_api_test.go'
+}
+
+task testMessageWeb(type: com.github.blindpirate.gogradle.Go) {
+    description 'Run tests just for sending message through Web.'
+    dependsOn startSelenium
+    go 'test -v -mod=mod ./internal/crud_test/message_web_test.go'
 }

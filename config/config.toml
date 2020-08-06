@@ -1,0 +1,30 @@
+[credentials]
+
+# password is mandatory, if you are using login by email, phone or username
+#email = "" # email used for authorizatiom
+#password = "" # password used for authorization
+#phone = "" # phone used for authorization
+#username = "" # username used for authorization
+
+[misc]
+
+#log = "stdout" # store logs in specified file, or default: stdout
+#debug = true # turn on debugging to see more info
+#output = "output.json" # store output of cli tool somewhere else, or default: stdout
+
+[selenium]
+
+#port = "4444" # port on which selenium server is listening
+#browser = "firefox" # browser to be used by selenium
+#options = ["--headless"] # additional options for selenium browser, like --no-sandbox, --headless and etc
+
+[textpad]
+
+#title = "Test Title" # title for textpad that will be created
+#subtitle = "Test Subtitle" # subtitle for textpad that will be created (optional)
+
+[message]
+
+#fullname = "Ekaterina Gorbunova" # full name of a user for sending message
+#username = "ekaterina" # username of a user for sending message
+#text = "My message text" # an actual message to send to a user

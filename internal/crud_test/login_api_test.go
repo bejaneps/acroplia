@@ -3,17 +3,12 @@ package crud_test
 import (
 	"encoding/json"
 	"os"
-	"runtime"
 	"testing"
 
 	"github.com/bejaneps/acroplia/internal/crud"
 )
 
 func TestAPILoginByValidEmail(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	// create bulk request body
 	s := crud.NewSignInEmailRequest("bejanhtc@gmail.com", "Saburi123")
 
@@ -36,29 +31,17 @@ func TestAPILoginByValidEmail(t *testing.T) {
 }
 
 func TestAPILoginByInvalidEmail(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	// create bulk request body
 	s := crud.NewSignInEmailRequest("invalidEmail@invalid.com", "invalidPassword")
 
 	// make request to server
-	resp, err := s.LoginByEmail()
+	_, err := s.LoginByEmail()
 	if err != crud.ErrInvalidEmail {
 		t.Fatal(err)
 	}
-
-	t.Logf("Response: \n\n")
-	b, _ := json.MarshalIndent(resp, "", "  ")
-	_, _ = os.Stdout.Write(b)
 }
 
 func TestAPILoginByValidUsername(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	// create bulk request body
 	s := crud.NewSignInUsernameRequest("bejanhtc", "Saburi123")
 
@@ -81,10 +64,6 @@ func TestAPILoginByValidUsername(t *testing.T) {
 }
 
 func TestAPILoginByInvalidUsername(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	// create bulk request body
 	s := crud.NewSignInUsernameRequest("invalidUsername", "invalidPassword")
 
@@ -96,10 +75,6 @@ func TestAPILoginByInvalidUsername(t *testing.T) {
 }
 
 func TestAPILoginByValidPhone(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	// create bulk request body
 	s := crud.NewSignInPhoneRequest("+905488892053", "Saburi123")
 
@@ -123,10 +98,6 @@ func TestAPILoginByValidPhone(t *testing.T) {
 }
 
 func TestAPILoginByInvalidPhone(t *testing.T) {
-	if runtime.GOOS != "linux" && runtime.GOARCH != "amd64" {
-		t.Fatal("test available only on linux amd64 arch")
-	}
-
 	// create bulk request body
 	s := crud.NewSignInPhoneRequest("+123456", "invalidPassword")
 

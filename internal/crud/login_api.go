@@ -7,7 +7,6 @@ import (
 	"time"
 
 	json "github.com/json-iterator/go"
-
 	"github.com/pkg/errors"
 )
 
@@ -38,7 +37,7 @@ type JSONMediaDataJSONMediaDataSource struct {
 	Type     string               `json:"type"` // Enum: IMAGE, AUDIO, VIDEO, DOCUMENT
 	Metadata interface{}          `json:"metadata"`
 	Source   *JSONMediaDataSource `json:"source"`
-	Crop     string               `json:"crop"`
+	//Crop     string               `json:"crop"`
 }
 
 type MediaItem struct {
@@ -91,6 +90,22 @@ type PrivateUser struct {
 	IsActive              bool                       `json:"isActive"`
 }
 
+// ToPublic converts PrivateUser struct to PublicUser
+func (priv *PrivateUser) ToPublic() *PublicUser {
+	return &PublicUser{
+		ID:             priv.ID,
+		UUID:           priv.UUID,
+		Online:         priv.IsOnline,
+		UserName:       priv.UserName,
+		FirstName:      priv.FirstName,
+		LastName:       priv.LastName,
+		Tutor:          priv.IsTutor,
+		TutorOnline:    priv.IsTutorOnline,
+		ImageMediaItem: priv.ImageMediaItem,
+		Guest:          priv.IsGuest,
+	}
+}
+
 type AuthResponse struct {
 	AccessToken  string `json:"accessToken"`
 	RefreshToken string `json:"refreshToken"`
@@ -118,8 +133,8 @@ type Device struct {
 	OsVersion string     `json:"osVersion"`
 	Locale    string     `json:"locale"`
 	Tokens    *PushToken `json:"tokens"`
-	CreatedAt time.Time  `json:"createdAt"`
-	UpdatedAt time.Time  `json:"updatedAt"`
+	CreatedAt int        `json:"createdAt"`
+	UpdatedAt int        `json:"updatedAt"`
 }
 
 // SignInEmailRequest is a struct that is ised for login by email requests
@@ -214,13 +229,13 @@ func makeLoginRequest(path string, data interface{}) (*ResponseAuthResponse, err
 		return nil, errors.Errorf("request failed with status code %d %s", resp.StatusCode, http.StatusText(resp.StatusCode))
 	}
 
-	acropliaResp := &ResponseAuthResponse{}
-	err = json.NewDecoder(resp.Body).Decode(acropliaResp)
+	authResponse := &ResponseAuthResponse{}
+	err = json.NewDecoder(resp.Body).Decode(authResponse)
 	if err != nil {
 		return nil, errors.Wrap(err, "decoding response")
 	}
 
-	return acropliaResp, nil
+	return authResponse, nil
 }
 
 // LoginByEmail makes a login request by email and password
